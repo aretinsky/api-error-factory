@@ -1,4 +1,4 @@
-package org.aretinsky.lib.apierrorfactory.example;
+package org.aretinsky.lib.apierrorfactory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
