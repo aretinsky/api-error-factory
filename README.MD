@@ -16,6 +16,8 @@ public void doSomething() {
 
 You will see following http response, when exception occurred:
 ```json
+HTTP STATUS: 422 - Unprocessable Entity
+
 {
   "errorType": "BUSINESS",
   "errorCodeResponse": {
