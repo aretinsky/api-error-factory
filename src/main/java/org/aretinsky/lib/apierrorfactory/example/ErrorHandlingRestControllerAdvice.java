@@ -1,7 +1,5 @@
 package org.aretinsky.lib.apierrorfactory.example;
 
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.aretinsky.lib.apierrorfactory.lib.CodeIdentifiedError;
 import org.aretinsky.lib.apierrorfactory.lib.ErrorType;
 import org.aretinsky.lib.apierrorfactory.lib.exception.ErrorException;
@@ -14,7 +12,6 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
-@Slf4j
 public class ErrorHandlingRestControllerAdvice extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ErrorException.class)
@@ -24,7 +21,6 @@ public class ErrorHandlingRestControllerAdvice extends ResponseEntityExceptionHa
             var code = codeIdentifiedError.getCode();
             codeResponse = new ErrorResponse.ErrorCodeResponse(code.getValue(), code.getName());
         }
-        log.error("", error);
         return ResponseEntity
                 .status(resolve(error.getType()))
                 .body(new ErrorResponse(error.getType(), codeResponse, error.getMessage()));
@@ -32,7 +28,6 @@ public class ErrorHandlingRestControllerAdvice extends ResponseEntityExceptionHa
 
     @ExceptionHandler(Exception.class)
     public ResponseEntity<ErrorResponse> onInternalException(Exception exception) {
-        log.error("Unhandled internal exception", exception);
         return ResponseEntity
                 .status(resolve(ErrorType.INTERNAL))
                 .body(new ErrorResponse(ErrorType.INTERNAL, null, "Internal exception"));
