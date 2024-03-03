@@ -1,6 +1,5 @@
 package org.aretinsky.lib.apierrorfactory.lib.exception;
 
-import lombok.experimental.Accessors;
 import org.aretinsky.lib.apierrorfactory.lib.CodeIdentifiedError;
 import org.aretinsky.lib.apierrorfactory.lib.ErrorType;
 import org.aretinsky.lib.apierrorfactory.lib.code.ErrorCode;
@@ -13,7 +12,6 @@ import org.aretinsky.lib.apierrorfactory.lib.operation.OperationCode;
 import java.util.ArrayList;
 import java.util.List;
 
-@Accessors(chain = true, fluent = true)
 public class ErrorExceptionBuilder<T extends ErrorException> {
 
     protected final ErrorType errorType;
@@ -84,7 +82,6 @@ public class ErrorExceptionBuilder<T extends ErrorException> {
         return compileMessage(message);
     }
 
-    @Accessors(chain = true, fluent = true)
     public static class CodeIdentified<T extends ErrorException & CodeIdentifiedError>
             extends ErrorExceptionBuilder<T> {
 
